@@ -1,0 +1,280 @@
+{
+    "fore": {
+        "prefix": "fe",
+        "body": [
+            "foreach ($1 as $${2:item}) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "foreach(iterable_expr as $value) {...}"
+    },
+    "forek": {
+        "prefix": "fk",
+        "body": [
+            "foreach ($1 as $${2:key} => $${3:index}) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "foreach(iterable_expr as $key => $value) {...}"
+    },
+    "mt": {
+        "prefix": "mt",
+        "body": [
+            "match($0) {\n$1 => $2\n};"
+        ],
+        "description": "match expression"
+    },
+    "docvar": {
+        "prefix": "dv",
+        "body": "/** @var ${1:Customer} ${2:obj} */$0"
+    },
+    "return": {
+        "prefix": "r",
+        "body": "return $0"
+    },
+    "this": {
+        "prefix": "t",
+        "body": "\\$this->$0"
+    },
+    "return $this;": {
+        "prefix": "rt",
+        "body": "return \\$this->$0"
+    },
+    "return new;": {
+        "prefix": "rn",
+        "body": "return new $0"
+    },
+    "!": {
+        "prefix": "e",
+        "body": "! $0"
+    },
+    "strict": {
+        "prefix": "strict",
+        "body": "declare(strict_types=1);"
+    },
+    "namespace": {
+        "prefix": "ns",
+        "body": "namespace App $0"
+    },
+    "$array = ": {
+        "prefix": "a",
+        "body": "\\$$1 = [$0];"
+    },
+    "$ = ": {
+        "prefix": "v",
+        "body": "\\$$1 = $2;$0"
+    },
+    "$": {
+        "prefix": "d",
+        "body": "\\$$0"
+    },
+    "$this->var = $$var;": {
+        "prefix": "cv",
+        "body": "\\$this->$1 = \\$$1;$0"
+    },
+    "Anonymous function": {
+        "prefix": "af",
+        "body": [
+            "function ($1)$2{",
+            "\t${0:# code...}",
+            "}"
+        ],
+        "description": "Anonymous function block"
+    },
+    "Key ... value": {
+        "prefix": "k",
+        "body": [
+            "'$1' => $0 ,"
+        ],
+        "description": "key => value statement"
+    },
+    "Abstract public method": {
+        "prefix": "am",
+        "body": [
+            "abstract ${1:public} ${2:static} function ${3:methodName}($4): ${5:void};"
+        ],
+        "description": "Abstract public method statement"
+    },
+    "Interface public method": {
+        "prefix": "im",
+        "body": [
+            "public function ${1:methodName}($2): ${3:void};$0"
+        ],
+        "description": "Abstract public method statement"
+    },
+    "Class": {
+        "prefix": "cl",
+        "body": [
+            "class ${1:$TM_FILENAME_BASE}",
+            "{",
+            "\t${0:# code...}",
+            "}"
+        ],
+        "description": "PHP Class block"
+    },
+    "Class extends": {
+        "prefix": "clx",
+        "body": [
+            "class ${1:$TM_FILENAME_BASE} extends ${2:MotherClass}",
+            "{",
+            "\t${0:# code...}",
+            "}"
+        ],
+        "description": "PHP Class extends block"
+    },
+    "Class implements": {
+        "prefix": "cli",
+        "body": [
+            "class ${1:$TM_FILENAME_BASE} implements ${2:Interfaces}",
+            "{",
+            "\t${0:# code...}",
+            "}"
+        ],
+        "description": "PHP Class implements block"
+    },
+    "Interface": {
+        "prefix": "in",
+        "body": [
+            "interface ${1:$TM_FILENAME_BASE}",
+            "{",
+            "\t${0:# code...}",
+            "}"
+        ],
+        "description": "PHP Interface block"
+    },
+    "Trait": {
+        "prefix": "tr",
+        "body": [
+            "trait ${1:$TM_FILENAME_BASE}",
+            "{",
+            "\t${0:# code...}",
+            "}"
+        ],
+        "description": "PHP Trait block"
+    },
+    "require_once": {
+        "prefix": "ro",
+        "body": [
+            "require_once ${1:__DIR__.}'${2:path_to_filename}';"
+        ],
+        "description": "'require_once' statement"
+    },
+    "Class constructor": {
+        "prefix": "cc",
+        "body": [
+            "public function __construct($1)",
+            "{",
+            "\t${0:# code...}",
+            "}"
+        ],
+        "description": "Class public constructor block"
+    },
+    "fn": {
+        "prefix": "fa",
+        "body": [
+            "fn($0) => $1"
+        ],
+        "description": "Arrow function"
+    },
+    "Function": {
+        "prefix": "f",
+        "body": [
+            "function ${1:func_name}($2)$3 {",
+            "\t${0:# code...}",
+            "}"
+        ],
+        "description": "Function block"
+    },
+    "Public method": {
+        "prefix": "p",
+        "body": [
+            "${1:public} function ${2:methodName}($3)$4",
+            "{",
+            "\t${0:# code...}",
+            "}"
+        ],
+        "description": "Public method block"
+    },
+    "GLOBAL": {
+        "prefix": "gg",
+        "body": [
+            "\\$GLOBALS[\"${1:key}\"]"
+        ],
+        "description": "$GLOBALS array"
+    },
+    "SERVER": {
+        "prefix": "gs",
+        "body": [
+            "\\$_SERVER[\"${1:key}\"]"
+        ],
+        "description": "$_SERVER array"
+    },
+    "REQUEST": {
+        "prefix": "gr",
+        "body": [
+            "\\$_REQUEST[\"${1:key}\"]"
+        ],
+        "description": "$_REQUEST array"
+    },
+    "POST": {
+        "prefix": "gp",
+        "body": [
+            "\\$_POST[\"${1:key}\"]"
+        ],
+        "description": "$_POST array"
+    },
+    "GET": {
+        "prefix": "ggt",
+        "body": [
+            "\\$_GET[\"${1:key}\"]"
+        ],
+        "description": "$_GET array"
+    },
+    "FILES": {
+        "prefix": "gf",
+        "body": [
+            "\\$_FILES['${1:userfile}']['${2:key}']"
+        ],
+        "description": "$_FILES array"
+    },
+    "ENV": {
+        "prefix": "ge",
+        "body": [
+            "\\$_ENV[\"${1:key}\"]"
+        ],
+        "description": "$_ENV array"
+    },
+    "COOKIE": {
+        "prefix": "gc",
+        "body": [
+            "\\$_COOKIE[\"${1:key}\"]"
+        ],
+        "description": "$_COOKIE array"
+    },
+    "SESSION": {
+        "prefix": "gss",
+        "body": [
+            "\\$_SESSION[\"${1:key}\"]"
+        ],
+        "description": "$_SESSION array"
+    },
+    "PestItFunction": {
+        "prefix": "pt",
+        "body": [
+            "it('${1:}', function () {",
+            "    //expect(${2:})->",
+            "});\n"
+        ],
+        "description": "Pest it()"
+    },
+    "test": {
+        "prefix": "tt",
+        "body": [
+            "\n/** @test */",
+            "public function ${1:func_name}() {",
+            "\t\\$response = \\$this->get('/');",
+            "\t\\$response->assertStatus(200);$0",
+            "}\n"
+        ]
+    }
+}

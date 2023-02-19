@@ -1,0 +1,22 @@
+{
+    "contributes": {
+        "snippets": [
+            {
+                "language": "go",
+                "path": "./go.json"
+            },
+            {
+                "language": "sql",
+                "path": "./sql.json"
+            },
+            {
+                "language": "lua",
+                "path": "./lua.json"
+            },
+            {
+                "language": "php",
+                "path": "./php.json"
+            }
+        ]
+    }
+}

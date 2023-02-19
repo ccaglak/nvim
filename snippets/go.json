@@ -1,0 +1,355 @@
+{
+    "s.av": {
+        "description": "Slice Append Vector",
+        "prefix": "s.av",
+        "body": [
+            "${1: arr} = append($1, ${vec:2}...)"
+        ]
+    },
+    "s.copy": {
+        "description": "Slice Copy",
+        "prefix": "s.copy",
+        "body": [
+            "${1:dest} = make([]${2:int}, len(${3:src}))",
+            "copy($1, $3)"
+        ]
+    },
+    "s.cut": {
+        "body": "a = append(a[:i], a[j:]...)",
+        "prefix": "s.cut",
+        "description": "a = append(a[:i], a[j:]...)"
+    },
+    "s.delete": {
+        "body": "a = append(a[:i], a[i+1:]...)",
+        "prefix": "s.delete",
+        "description": "a = append(a[:i], a[i+1:]...)"
+    },
+    "s.extend": {
+        "body": "a = append(a, make([]T, j)...)",
+        "prefix": "s.extend",
+        "description": "a = append(a, make([]T, j)...)"
+    },
+    "s.insert": {
+        "body": "a = append(a[:i], append([]T{x}, a[i:]...)...)",
+        "prefix": "s.insert",
+        "description": "a = append(a[:i], append([]T{x}, a[i:]...)...)"
+    },
+    "s.unshift": {
+        "body": "a = append([]T{x}, a...)",
+        "prefix": "s.unshift",
+        "description": "a = append([]T{x}, a...)"
+    },
+    "s.push": {
+        "body": "a = append(a, x)",
+        "prefix": "s.push",
+        "description": "a = append(a, x)"
+    },
+    "s.pop": {
+        "body": "x, a = a[0], a[1:]",
+        "prefix": "s.pop",
+        "description": "x, a = a[0], a[1:]"
+    },
+    "s.popback": {
+        "body": "x, a = a[len(a) -1], a[:len(a) -1]",
+        "prefix": "s.popback",
+        "description": "x, a = a[len(a) -1], a[:len(a) -1]"
+    },
+    "single constant": {
+        "prefix": "co",
+        "body": "const ${1:name} = ${2:value}",
+        "description": "Snippet for a constant"
+    },
+    "variable declaration": {
+        "prefix": "var",
+        "body": "var ${1:name} ${2:type}",
+        "description": "Snippet for a variable"
+    },
+    "type interface declaration": {
+        "prefix": "ty",
+        "body": "type ${1:name} interface {\n\t$0\n}",
+        "description": "Snippet for a type interface"
+    },
+    "main": {
+        "prefix": "main",
+        "body": [
+            "func main() {",
+            "\t$0",
+            "}"
+        ],
+        "description": "main function"
+    },
+    "struct": {
+        "prefix": "st",
+        "body": [
+            "type ${1} struct {",
+            "\t${2}",
+            "}"
+        ],
+        "description": "struct"
+    },
+    "func": {
+        "prefix": "fn",
+        "body": [
+            "func ${1}() ${2} {",
+            "\t${3}",
+            "}"
+        ],
+        "description": "function"
+    },
+    "method declaration": {
+        "prefix": "mt",
+        "body": "func (${1:receiver} ${2:type}) ${3:method}($4) $5 {\n\t$0\n}",
+        "description": "Snippet for method declaration"
+    },
+    "if statement": {
+        "prefix": "if",
+        "body": "if ${1:condition} {\n\t$0\n}",
+        "description": "Snippet for if statement"
+    },
+    "else branch": {
+        "prefix": "el",
+        "body": "else {\n\t$0\n}",
+        "description": "Snippet for else branch"
+    },
+    "if else statement": {
+        "prefix": "ie",
+        "body": "if ${1:condition} {\n\t$2\n} else {\n\t$0\n}",
+        "description": "Snippet for if else"
+    },
+    "if err != nil": {
+        "prefix": "iferr",
+        "body": "if err != nil {\n\t${1:return ${2:nil, }${3:err}}\n}",
+        "description": "Snippet for if err != nil"
+    },
+    "switch statement": {
+        "prefix": "switch",
+        "body": "switch ${1:expression} {\ncase ${2:condition}:\n\t$0\n}",
+        "description": "Snippet for switch statement"
+    },
+    "map declaration": {
+        "prefix": "map",
+        "body": "map[${1:type}]${2:type}",
+        "description": "Snippet for a map"
+    },
+    "init var": {
+        "prefix": "vv",
+        "body": [
+            "${2:varName} := ${1:value}"
+        ]
+    },
+    "Goroutine anonymous func": {
+        "prefix": "gofunc",
+        "body": [
+            "go func(){",
+            "  $0",
+            "}()"
+        ]
+    },
+    "Slice Remove": {
+        "prefix": "sr",
+        "body": [
+            "${1:slice} = append(${1:slice}[:${2:index}], ${1:slice}[${2:index}+1:]...)"
+        ]
+    },
+    "Defer anonymous func": {
+        "prefix": "defunc",
+        "body": [
+            "defer func() {",
+            "  $0",
+            "}()"
+        ]
+    },
+    "if ok": {
+        "prefix": "ifok",
+        "body": [
+            "if ${1:value}, ok := $2; ok {",
+            "  $0",
+            "}"
+        ]
+    },
+    "delete": {
+        "prefix": "del",
+        "body": [
+            "delete(${1:map}, \"${2:key}\")"
+        ]
+    },
+    "append": {
+        "prefix": "ap",
+        "body": [
+            "${1:slice} = append(${1:slice}, ${0:element})"
+        ]
+    },
+    "fmt.Sprintf": {
+        "prefix": "fms",
+        "body": [
+            "fmt.Sprintf(\"${1:%+v}\", $0)"
+        ]
+    },
+    "fmt.Errorf": {
+        "prefix": "fme",
+        "body": [
+            "fmt.Errorf(\"${1:%+v}\", ${0:err})"
+        ]
+    },
+    "ctx context.Context": {
+        "prefix": "ctx",
+        "body": [
+            "ctx context.Context"
+        ]
+    },
+    "if error": {
+        "prefix": "ife",
+        "body": [
+            "if err != nil {",
+            "  $0",
+            "}"
+        ]
+    },
+    "errors.Is()": {
+        "prefix": "is",
+        "body": [
+            "if errors.Is(err, ${1:exec.ErrNotFound}) {",
+            "  $0",
+            "}"
+        ]
+    },
+    "errors.As()": {
+        "prefix": "as",
+        "body": [
+            "var e ${1:*exec.Error}",
+            "if errors.As(err, &e) {",
+            "  $0",
+            "}"
+        ]
+    },
+    "Error with Stack": {
+        "prefix": "es",
+        "body": [
+            "errors.WithStack(err)"
+        ]
+    },
+    "Error with Message": {
+        "prefix": "em",
+        "body": [
+            "errors.WithMessage(err, ${0:message})"
+        ]
+    },
+    "Error with Messagef": {
+        "prefix": "emf",
+        "body": [
+            "errors.WithMessagef(err, ${1:format}, ${0:args})"
+        ]
+    },
+    "Return": {
+        "prefix": "r",
+        "body": [
+            "return $0"
+        ]
+    },
+    "Return Nil": {
+        "prefix": "rn",
+        "body": [
+            "return nil"
+        ]
+    },
+    "Return Nil & err": {
+        "prefix": "rne",
+        "body": [
+            "return nil, err"
+        ]
+    },
+    "Return err": {
+        "prefix": "re",
+        "body": [
+            "return err"
+        ]
+    },
+    "Struct": {
+        "prefix": "st",
+        "body": [
+            "type ${1:structName} struct {",
+            "  $0",
+            "}"
+        ]
+    },
+    "Struct Field": {
+        "prefix": "sf",
+        "body": [
+            "${1:fieldName} ${2:string}"
+        ]
+    },
+    "Struct Tag": {
+        "prefix": "stt",
+        "body": [
+            "`${1:json}:\"${2:jsonFieldName}\"`"
+        ]
+    },
+    "Interface": {
+        "prefix": "inte",
+        "body": [
+            "type ${1:interfaceName} interface {",
+            "  $0",
+            "}"
+        ]
+    },
+    "New Constructor Method": {
+        "prefix": "ne",
+        "body": [
+            "func New$1($2) *$1 {",
+            "  $3",
+            "  return &$1{",
+            "    $0",
+            "  }",
+            "}"
+        ]
+    },
+    "for statement": {
+        "prefix": "for",
+        "body": "for ${1:i} := 0; $1 < ${2:count}; $1${3:++} {\n\t$0\n}"
+    },
+    "For Range": {
+        "prefix": "fr",
+        "body": [
+            "for _, ${1:v} := range ${2:values} {",
+            "  $0",
+            "}"
+        ]
+    },
+    "select": {
+        "prefix": "sel",
+        "body": [
+            "select {",
+            "case $1 <- $0:",
+            "default:",
+            "}"
+        ]
+    },
+    "Testify Assert Nil": {
+        "prefix": "anil",
+        "body": [
+            "assert.Nil(t, ${1:actual})",
+            "$0"
+        ]
+    },
+    "Testify Assert Not Nil": {
+        "prefix": "annil",
+        "body": [
+            "assert.NotNil(t, ${1:actual})",
+            "$0"
+        ]
+    },
+    "Testify Assert Equal": {
+        "prefix": "aeq",
+        "body": [
+            "assert.Equal(t, ${1:expected}, ${2:actual})",
+            "$0"
+        ]
+    },
+    "Testify Assert No Error": {
+        "prefix": "anerr",
+        "body": [
+            "assert.NoError(t, ${1:err})",
+            "$0"
+        ]
+    }
+}
