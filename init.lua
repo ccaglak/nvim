@@ -194,9 +194,7 @@ end
 map("n", "dd", smart_dd, { noremap = true, expr = true })
 
 local function snake(s)
-    if s == nil then
-        s = vim.fn.expand("<cword>")
-    end
+    s = s or vim.fn.expand("<cword>")
     print("replace: ", s)
     local n = s:gsub('%f[^%l]%u', '_%1'):gsub('%f[^%a]%d', '_%1'):gsub('%f[^%d]%a', '_%1'):gsub('(%u)(%u%l)', '%1_%2')
         :lower()
@@ -206,11 +204,8 @@ local function snake(s)
 end
 
 -- convert to camel case
-local function camel()
-    local s
-    if s == nil then
-        s = vim.fn.expand("<cword>")
-    end
+local function camel(s)
+    s = s or vim.fn.expand("<cword>")
     local n = string.gsub(s, "_%a+", function(word)
         local first = string.sub(word, 2, 2)
         local rest = string.sub(word, 3)
@@ -320,29 +315,18 @@ require("lazy").setup({
             })
         end,
     },
-    -- {
-    --     "windwp/nvim-autopairs",
-    --     event = 'InsertEnter',
-    --     config = function()
-    --         require('nvim-autopairs').setup({})
-    --         local status, cmp = pcall(require, 'cmp')
-    --         if not status then
-    --             vim.cmd([[packadd nvim-cmp]])
-    --             cmp = require('cmp')
-    --         end
-    --         local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-    --         cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
-    --     end
-    -- },
     {
-        'm4xshen/autoclose.nvim',
+        "windwp/nvim-autopairs",
+        event = 'InsertEnter',
         config = function()
-            require("autoclose").setup({
-                options = {
-                    disabled_filetypes = { "text", "markdown" },
-                    disable_when_touch = true,
-                },
-            })
+            require('nvim-autopairs').setup({})
+            local status, cmp = pcall(require, 'cmp')
+            if not status then
+                vim.cmd([[packadd nvim-cmp]])
+                cmp = require('cmp')
+            end
+            local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+            cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
         end
     },
     {
@@ -541,34 +525,6 @@ require("lazy").setup({
             { 'gh',        ':Lspsaga lsp_finder<cr>' },
             { '<Leader>o', ':Lspsaga outline<cr>' },
         }
-    },
-    {
-        'abecodes/tabout.nvim',
-        event = "InsertEnter",
-        config = function()
-            require('tabout').setup {
-                tabkey = '<Tab>',
-                backwards_tabkey = '<S-Tab>',
-                act_as_tab = true,
-                act_as_shift_tab = false,
-                default_tab = '<C-t>',
-                default_shift_tab = '<C-d>',
-                enable_backwards = true,
-                completion = true,
-                tabouts = {
-                    { open = "'", close = "'" },
-                    { open = '"', close = '"' },
-                    { open = '`', close = '`' },
-                    { open = '(', close = ')' },
-                    { open = '[', close = ']' },
-                    { open = '{', close = '}' }
-                },
-                ignore_beginning = true,
-                exclude = {}
-            }
-        end,
-        wants = { 'nvim-treesitter' },
-        after = { 'nvim-cmp' }
     },
     {
         "lewis6991/gitsigns.nvim",
